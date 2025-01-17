@@ -21,7 +21,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
-    .addStyleEntry('tailwind', './assets/styles/app.scss')
+    .addStyleEntry('tailwind', './assets/styles/app.css')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -56,14 +56,14 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
-    .enablePostCssLoader()
+    
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
 
     // uncomment if you use React
     .enableReactPreset()
-
+    .enablePostCssLoader() 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
     //.enableIntegrityHashes(Encore.isProduction())
