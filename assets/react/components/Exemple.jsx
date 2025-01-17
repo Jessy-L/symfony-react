@@ -2,8 +2,8 @@ import React from 'react';
 
 const Exemple = () => {
     return (
-        <div>
-            <h1>Hello from React!</h1>
+        <div className="p-4 bg-blue-500 text-white">
+            Hello Tailwind CSS
         </div>
     );
 };

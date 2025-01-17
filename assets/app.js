@@ -6,13 +6,16 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.css';
+import './styles/app.scss';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Exemple from './react/components/exemple';
+import { createRoot } from 'react-dom/client';
+import Exemple from './react/components/Exemple';
 
-ReactDOM.render(
-    <Exemple />,
-    document.getElementById('react-app')
-);
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('react-app');
+    if (container) {
+      const root = createRoot(container);
+      root.render(<Exemple />);
+    }
+});
