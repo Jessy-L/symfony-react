@@ -8,10 +8,14 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 import 'tailwindcss/tailwind.css'
+import "flyonui/flyonui"
 
+import FlyonUI from 'flyonui';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+
 import Exemple from './react/components/Exemple';
+import Header from './react/components/Header';
 
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('react-app');
@@ -19,4 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const root = createRoot(container);
       root.render(<Exemple />);
     }
+
+    const header = document.getElementById('header');
+    if (header) {
+      const root = createRoot(header);
+      root.render(<Header />);
+    }
+
 });
