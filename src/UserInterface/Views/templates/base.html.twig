@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html>
     <head>
+    
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+
         {% block stylesheets %}
+<<<<<<< HEAD:src/UserInterface/Views/templates/base.html.twig
             {{ encore_entry_link_tags('app') }}
+=======
+            {{ encore_entry_link_tags('tailwind') }}
+>>>>>>> cabd853ab4176bbe9554626a63289200413b031f:templates/base.html.twig
         {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+    
     </head>
     <body>
+<<<<<<< HEAD:src/UserInterface/Views/templates/base.html.twig
         <div class="container mx-auto">
             {% block body %}{% endblock %}
         </div>
 
         <script src="{{ asset('build/runtime.js') }}"></script>
         <script src="{{ asset('build/app.js') }}"></script>
+=======
+    
+        <div id="header"></div>
+        {% block body %}{% endblock %}
+    
+>>>>>>> cabd853ab4176bbe9554626a63289200413b031f:templates/base.html.twig
     </body>
 </html>

@@ -56,13 +56,17 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
+<<<<<<< HEAD
+=======
+    
+>>>>>>> cabd853ab4176bbe9554626a63289200413b031f
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
 
     // uncomment if you use React
     .enableReactPreset()
-
+    .enablePostCssLoader() 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
     //.enableIntegrityHashes(Encore.isProduction())

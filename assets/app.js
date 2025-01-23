@@ -7,10 +7,17 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
+<<<<<<< HEAD
 import 'tailwindcss/tailwind.css';
+=======
+import 'tailwindcss/tailwind.css'
+import "flyonui/flyonui"
+>>>>>>> cabd853ab4176bbe9554626a63289200413b031f
 
+import FlyonUI from 'flyonui';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+<<<<<<< HEAD
 import Button from './react/components/Button';
 import Header from './react/components/Header';
 import TaskList from './react/components/TaskList';
@@ -37,3 +44,23 @@ initializeReactComponent(TaskList, { tasks }, "react-task-list");
 initializeReactComponent(TaskForm, {}, "react-task-form");
 initializeReactComponent(TaskComplete, {}, "react-task-complete");
 initializeReactComponent(Button, { label: "Click Me" }, "react-button");
+=======
+
+import Exemple from './react/components/Exemple';
+import Header from './react/components/Header';
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('react-app');
+    if (container) {
+      const root = createRoot(container);
+      root.render(<Exemple />);
+    }
+
+    const header = document.getElementById('header');
+    if (header) {
+      const root = createRoot(header);
+      root.render(<Header />);
+    }
+
+});
+>>>>>>> cabd853ab4176bbe9554626a63289200413b031f
