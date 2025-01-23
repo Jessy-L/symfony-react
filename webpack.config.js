@@ -56,10 +56,6 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
-<<<<<<< HEAD
-=======
-    
->>>>>>> cabd853ab4176bbe9554626a63289200413b031f
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

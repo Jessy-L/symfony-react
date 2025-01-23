@@ -4521,10 +4521,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-<<<<<<< HEAD
     "platform-dev": [],
-=======
-    "platform-dev": {},
->>>>>>> cabd853ab4176bbe9554626a63289200413b031f
     "plugin-api-version": "2.6.0"
 }
