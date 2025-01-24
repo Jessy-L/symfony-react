@@ -9,7 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Task
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 36)]
+    #[ORM\Column(type: 'integer', options: ["unsigned" => true, "auto_increment" => true])]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     private string $id;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -20,4 +21,42 @@ class Task
 
     #[ORM\Column(type: 'string', length: 20)]
     private string $status;
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setDescription(string $description): self  // Cette méthode manquait
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
 }

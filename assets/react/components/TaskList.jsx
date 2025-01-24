@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-const TaskList = ({ tasks }) => {
+const TaskList = () => {
+
+    const [tasks, setTasks] = useState([]);
+
+    useEffect(() => {
+        fetch('/api/tasks')
+            .then(response => response.json())
+            .then(data => setTasks(data))
+            .catch(error => console.error(error));
+    }, []);
+
     return (
         <table className="table">
             <thead>

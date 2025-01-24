@@ -29,14 +29,32 @@ class Task
         return $this->id;
     }
 
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+        return $this;
+    }
+
     public function getTitle(): string
     {
         return $this->title;
     }
 
+    public function setDescription(string $description): self  // Cette méthode manquait
+    {
+        $this->description = $description;
+        return $this;
+    }
+
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+        return $this;
     }
 
     public function getStatus(): TaskStatus

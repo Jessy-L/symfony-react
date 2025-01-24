@@ -16,6 +16,7 @@ class CreateTask
 
     public function execute(string $title, string $description): Task
     {
+        dump($title, $description);
         $task = new Task(uniqid(), $title, $description);
         $this->taskRepository->save($task);
 

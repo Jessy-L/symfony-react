@@ -19,10 +19,10 @@ import TaskForm from './react/components/TaskForm';
 import TaskComplete from './react/components/TaskComplete';
 
 // Sample data for TaskList
-const tasks = [
-    { id: 1, title: "Task 1", description: "Description 1", status: "Pending" },
-    { id: 2, title: "Task 2", description: "Description 2", status: "Completed" }
-];
+// const tasks = [
+//     { id: 1, title: "Task 1", description: "Description 1", status: "Pending" },
+//     { id: 2, title: "Task 2", description: "Description 2", status: "Completed" }
+// ];
 
 const initializeReactComponent = (component, props = {}, containerId) => {
     const container = document.getElementById(containerId);
@@ -34,7 +34,7 @@ const initializeReactComponent = (component, props = {}, containerId) => {
 
 // Initialize components
 initializeReactComponent(Header, { title: "Liste des tâches" }, "react-header");
-initializeReactComponent(TaskList, { tasks }, "react-task-list");
+initializeReactComponent(TaskList, {}, "react-task-list");
 initializeReactComponent(TaskForm, {}, "react-task-form");
 initializeReactComponent(TaskComplete, {}, "react-task-complete");
 initializeReactComponent(Button, { label: "Click Me" }, "react-button");

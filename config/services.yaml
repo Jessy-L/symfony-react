@@ -26,3 +26,5 @@ services:
     App\UserInterface\Controllers\:
         resource: '../src/UserInterface/Controllers'
         tags: ['controller.service_arguments']
+    
+    App\Domain\Repositories\TaskRepositoryInterface: '@App\Infrastructure\Persistence\Doctrine\Repositories\TaskRepository'

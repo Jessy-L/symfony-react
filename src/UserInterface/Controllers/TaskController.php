@@ -26,11 +26,10 @@ class TaskController extends AbstractController
     #[Route('/tasks', name: 'task_index', methods: ['GET'])]
     public function index()
     {
-        $tasks = $this->taskRepository->findAll();
-        return $this->render('task/index.html.twig', ['tasks' => $tasks]);
+        return $this->render('task/index.html.twig');
     }
 
-    #[Route('/tasks', name: 'create_task', methods: ['POST'])]
+    #[Route('/tasks/create', name: 'create_task', methods: ['POST'])]
     public function create(Request $request)
     {
         if ($request->isMethod('POST')) {
@@ -48,5 +47,21 @@ class TaskController extends AbstractController
     {
         $this->completeTask->execute($id);
         return $this->render('task/complete.html.twig');
+    }
+
+    #[Route('/api/tasks', name: 'get_tasks', methods: ['GET'])]
+    public function getTasks(): JsonResponse
+    {
+        $tasks = $this->taskRepository->findAll();
+        return new JsonResponse(
+            array_map(function($task) {
+                return [
+                    'id' => $task->getId(),
+                    'title' => $task->getTitle(),
+                    'description' => $task->getDescription(),
+                    'status' => $task->getStatus()
+                ];
+            }, $tasks)
+        );
     }
 }
