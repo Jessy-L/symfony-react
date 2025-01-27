@@ -3,7 +3,7 @@ Configuration Projet Symfony React
 
 📋 Prérequis
 
-    PHP 8.1 ou supérieur
+    PHP 8.3 ou supérieur
     Composer
     Node.js et npm
     Symfony CLI
@@ -75,7 +75,7 @@ module.exports = {
     ]
 };
 ```
-📁 Structure du Projet
+📁 Structure du projet pour le début
 
 symfo-react/
 ├── assets/
@@ -182,6 +182,138 @@ En cas de problèmes :
     Documentation Symfony
     Documentation React
     Webpack Encore
+
+## Stucture du projet
+
+Ce projet suit l'**Clean Architecture** pour séparer clairement les responsabilités et faciliter l'évolutivité et la maintenance.
+
+---
+
+## Structure du dossier `src`
+
+```
+src
+├── Application
+│   └── UseCases
+│       ├── CompleteTask.php
+│       ├── CreateTask.php
+│       └── DeleteTask.php
+├── Domain
+│   ├── Entities
+│   │   └── Task.php
+│   ├── Repositories
+│   │   └── TaskRepositoryInterface.php
+│   └── ValueObjects
+│       └── TaskStatus.php
+├── Infrastructure
+│   ├── Persistence
+│   │   └── Doctrine
+│   │       ├── Entities
+│   │       │   └── Task.php
+│   │       └── Repositories
+│   │           └── TaskRepository.php
+│   └── Repositories
+│       └── InMemoryTaskRepository.php
+├── Kernel.php
+└── UserInterface
+    ├── Controllers
+    │   ├── HomeController.php
+    │   └── TaskController.php
+    └── Views
+        └── templates
+            ├── base.html.twig
+            ├── home
+            │   └── index.html.twig
+            └── task
+                ├── complete.html.twig
+                ├── create.html.twig
+                ├── delete.html.twig
+                └── index.html.twig
+```
+
+---
+
+## Détail des dossiers et classes
+
+### 1. `Application/UseCases`
+Contient la logique métier de l'application. Chaque classe correspond à une action spécifique.
+
+- **`CompleteTask.php`** :
+  - Récupère une tâche via le dépôt.
+  - Modifie son statut en "complété".
+  - Sauvegarde la modification.
+
+- **`CreateTask.php`** :
+  - Crée une nouvelle tâche à partir des données fournies.
+  - Sauvegarde la tâche dans le dépôt.
+
+- **`DeleteTask.php`** :
+  - Supprime une tâche existante du dépôt.
+
+---
+
+### 2. `Domain`
+Contient la logique métier pure, sans dépendances externes.
+
+- **`Entities/Task.php`** :
+  - Représente une tâche avec ses propriétés (id, titre, description, statut).
+
+- **`Repositories/TaskRepositoryInterface.php`** :
+  - Interface qui définit les méthodes pour interagir avec les tâches (trouver, sauvegarder, supprimer).
+
+- **`ValueObjects/TaskStatus.php`** :
+  - Objet valeur représentant les différents statuts de tâche.
+
+---
+
+### 3. `Infrastructure`
+Contient les implémentations concrètes pour stocker les données.
+
+- **`Persistence/Doctrine/Repositories/TaskRepository.php`** :
+  - Implémente `TaskRepositoryInterface` pour sauvegarder les tâches en base de données (MySQL/MariaDB).
+
+- **`Repositories/InMemoryTaskRepository.php`** :
+  - Dépôt de données temporaire en mémoire (utile pour les tests et le développement rapide).
+  - Fonctionnalités :
+    - `findById($id)` : Retourne la tâche si elle existe.
+    - `save($task)` : Ajoute/modifie la tâche.
+    - `findAll()` : Retourne toutes les tâches.
+    - `delete($task)` : Supprime la tâche.
+    - `update($task)` : Met à jour la tâche.
+
+---
+
+### 4. `UserInterface`
+Gère l'interaction avec l'utilisateur.
+
+- **`Controllers/TaskController.php`** :
+  - Gère les requêtes HTTP relatives aux tâches.
+  - Actions : créer, compléter, supprimer.
+
+- **`Views/templates/`** :
+  - Fichiers Twig pour afficher les pages utilisateur (ex: liste des tâches, création, suppression).
+
+## Configuration des services (`services.yaml`)
+
+Le fichier `services.yaml` configure l'injection de dépendances en utilisant Symfony.
+
+Exemple de liaison d'interface avec l'implémentation Doctrine :
+```yaml
+    App\Domain\Repositories\TaskRepositoryInterface: '@App\Infrastructure\Persistence\Doctrine\Repositories\TaskRepository'
+```
+Cela signifie que chaque fois que l'application demande `TaskRepositoryInterface`, elle recevra l'implémentation Doctrine.
+
+---
+
+## Conclusion
+
+Cette architecture permet de garder une application bien organisée, avec :
+- Une séparation claire entre les couches.
+- Une facilité de tests et de maintenance.
+- La possibilité de changer l'infrastructure (BDD, API) sans impacter la logique métier.
+
+
+
 
 📄 Licence
 

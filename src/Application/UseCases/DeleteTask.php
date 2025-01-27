@@ -4,15 +4,15 @@ namespace App\Application\UseCases;
 
 use App\Domain\Repositories\TaskRepositoryInterface;
 
-
 /**
- * Class CompleteTask
+ * Class DeleteTask
+ *
+ * Ce cas d'utilisation est responsable de la suppression d'une tâche existante.
+ * Il vérifie si la tâche demandée existe, puis la supprime du dépôt.
+ *
  * @package App\Application\UseCases
- * Ce cas d'utilisation est responsable de marquer une tâche comme complétée.
- * Il récupère la tâche via le dépôt, effectue la mise à jour de son état
- * et enregistre les modifications.
  */
-class CompleteTask
+class DeleteTask
 {
     private TaskRepositoryInterface $taskRepository;
 
@@ -22,17 +22,16 @@ class CompleteTask
     }
 
     /**
-     * Exécute le processus de complétion d'une tâche.
+     * Exécute le processus de suppression d'une tâche.
      *
-     * @param string $taskId L'identifiant unique de la tâche à compléter.
+     * @param string $taskId L'identifiant unique de la tâche à supprimer.
      * 
      * @throws \DomainException Si la tâche n'est pas trouvée.
      *
      * Cette méthode suit les étapes suivantes :
-     * 1. Récupérer la tâche via le dépôt.
+     * 1. Récupérer la tâche via son identifiant.
      * 2. Vérifier si la tâche existe, sinon lever une exception.
-     * 3. Marquer la tâche comme complétée.
-     * 4. Sauvegarder la tâche mise à jour dans le dépôt.
+     * 3. Supprimer la tâche du dépôt.
      */
     public function execute(string $taskId): void
     {
@@ -42,7 +41,6 @@ class CompleteTask
             throw new \DomainException("Task not found.");
         }
 
-        $task->complete();
-        $this->taskRepository->update($task);
+        $this->taskRepository->delete($task);
     }
 }

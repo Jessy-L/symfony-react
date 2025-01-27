@@ -4,6 +4,16 @@ namespace App\Domain\Entities;
 
 use App\Domain\ValueObjects\TaskStatus;
 
+
+/**
+ * Class Task
+ *
+ * Cette classe représente l'entité métier "Task" (une tâche).
+ * Elle encapsule les données et la logique métier associées à une tâche,
+ * telles que son identifiant, son titre, sa description et son statut.
+ *
+ * @package App\Domain\Entities
+ */
 class Task
 {
     private string $id;
@@ -40,7 +50,7 @@ class Task
         return $this->title;
     }
 
-    public function setDescription(string $description): self  // Cette méthode manquait
+    public function setDescription(string $description): self
     {
         $this->description = $description;
         return $this;

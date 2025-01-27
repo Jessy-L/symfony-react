@@ -2,16 +2,27 @@
 
 namespace App\Infrastructure\Persistence\Doctrine\Entities;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Classe Task
+ *
+ * Cette classe représente une entité Doctrine pour la table `tasks` dans la base de données.
+ * Elle est utilisée dans la couche Infrastructure de l'architecture clean pour gérer 
+ * la persistance des tâches via Doctrine ORM.
+ *
+ * @package App\Infrastructure\Persistence\Doctrine\Entities
+ */
 
 #[ORM\Entity]
 #[ORM\Table(name: 'tasks')]
 class Task
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'integer', options: ["unsigned" => true, "auto_increment" => true])]
-    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
-    private string $id;
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    #[ORM\Column(type: Types::INTEGER, options: ['unsigned' => true])]
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $title;
@@ -38,7 +49,7 @@ class Task
         return $this->title;
     }
 
-    public function setDescription(string $description): self  // Cette méthode manquait
+    public function setDescription(string $description): self
     {
         $this->description = $description;
         return $this;

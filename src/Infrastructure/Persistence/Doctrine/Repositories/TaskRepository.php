@@ -25,6 +25,23 @@ class TaskRepository implements TaskRepositoryInterface
         $this->entityManager->flush();
     }
 
+    public function update(Task $domainTask): void
+    {
+        $doctrineTask = $this->entityManager->find(DoctrineTask::class, $domainTask->getId());
+        $doctrineTask->setTitle($domainTask->getTitle());
+        $doctrineTask->setDescription($domainTask->getDescription());
+        $doctrineTask->setStatus($domainTask->getStatus()->getValue());
+
+        $this->entityManager->flush();
+    }
+    
+    public function delete(Task $domainTask): void
+    {
+        $doctrineTask = $this->entityManager->find(DoctrineTask::class, $domainTask->getId());
+        $this->entityManager->remove($doctrineTask);
+        $this->entityManager->flush();
+    }
+
     public function findById(string $id): ?Task
     {
         $doctrineTask = $this->entityManager->find(DoctrineTask::class, $id);
@@ -41,6 +58,9 @@ class TaskRepository implements TaskRepositoryInterface
         return $this->entityManager->getRepository(DoctrineTask::class)->findAll();
     }
 
+    /**
+     * Convertir une entité Doctrine en entité de domaine
+     */
     private function mapToDomainTask(DoctrineTask $doctrineTask): Task
     {
         return new Task(
@@ -50,4 +70,6 @@ class TaskRepository implements TaskRepositoryInterface
             $doctrineTask->getStatus()
         );
     }
+
+
 }

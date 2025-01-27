@@ -9,13 +9,13 @@
 import './styles/app.css';
 import 'tailwindcss/tailwind.css';
 
-import FlyonUI from 'flyonui';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import Button from './react/components/Button';
 import Header from './react/components/Header';
+import Footer from './react/components/Footer';
 import TaskList from './react/components/TaskList';
 import TaskForm from './react/components/TaskForm';
+import TaskDelete from './react/components/TaskDelete';
 import TaskComplete from './react/components/TaskComplete';
 
 // Sample data for TaskList
@@ -33,8 +33,9 @@ const initializeReactComponent = (component, props = {}, containerId) => {
 };
 
 // Initialize components
-initializeReactComponent(Header, { title: "Liste des tâches" }, "react-header");
+initializeReactComponent(Header, { title: "TODO" }, "react-header");
+initializeReactComponent(Footer, {}, "react-footer");
 initializeReactComponent(TaskList, {}, "react-task-list");
 initializeReactComponent(TaskForm, {}, "react-task-form");
 initializeReactComponent(TaskComplete, {}, "react-task-complete");
-initializeReactComponent(Button, { label: "Click Me" }, "react-button");
+initializeReactComponent(TaskDelete, {},"react-task-delete");

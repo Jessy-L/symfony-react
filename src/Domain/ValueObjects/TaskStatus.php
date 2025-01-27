@@ -2,6 +2,16 @@
 
 namespace App\Domain\ValueObjects;
 
+
+/**
+ * Class TaskStatus
+ *
+ * Cette classe représente le statut d'une tâche sous forme d'un "Value Object".
+ * Elle garantit que seules les valeurs valides ('PENDING', 'COMPLETED') peuvent être utilisées,
+ * assurant ainsi l'intégrité des données dans le domaine métier.
+ *
+ * @package App\Domain\ValueObjects
+ */
 class TaskStatus
 {
     private const STATUS = ['PENDING', 'COMPLETED'];
