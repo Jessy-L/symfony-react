@@ -76,7 +76,7 @@ module.exports = {
 };
 ```
 📁 Structure du projet pour le début
-
+```
 symfo-react/
 ├── assets/
 │   ├── react/
@@ -92,7 +92,7 @@ symfo-react/
 │   └── base.html.twig
 ├── babel.config.js
 └── webpack.config.js
-
+```
 💻 Configuration du Développement
 ```jsx
 //Composant React (assets/react/components/Example.jsx)
